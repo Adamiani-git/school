@@ -27,6 +27,14 @@
 .App-link {
   color: #61dafb;
 }
+a:link{
+  text-decoration: none;
+  color: grey;
+}
+.school {
+  position: absolute;
+  overflow-y: scroll;
+}
 
 @keyframes App-logo-spin {
   from {
