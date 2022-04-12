@@ -32,8 +32,12 @@ a:link{
   color: grey;
 }
 .school {
-  position: absolute;
+  /* position: absolute; */
   overflow-y: scroll;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button { 
+	-webkit-appearance: none;
 }
 
 @keyframes App-logo-spin {
