@@ -3,14 +3,23 @@ import GoogleMapReact from 'google-map-react';
 import { Card } from 'react-bootstrap';
 import { MdOutlineLocationOn } from 'react-icons/md';
 
-const SchoolLocation = ({ name, info }) => (
+const SchoolLocation = ({ name, address, phone, mail }) => (
   <div>
-    <Card style={{ width: "150px", left: "40px" }}>
+    <Card style={{ width: "300px", left: "40px" }}>
       <Card.Header>
-        {name}
+        <div className="fw-bold">
+          {name}
+        </div>
       </Card.Header>
       <Card.Body>
-        {info}
+        <div className="address col-12 text-center">
+          {address}
+        </div>
+        <hr />
+        <div className="phone text-center col-12">
+          ტელეფონი:  {phone} | mail: {mail}
+        </div>
+
       </Card.Body>
     </Card>
     <MdOutlineLocationOn size={40} color="red" />
@@ -29,9 +38,8 @@ const MyLocation = ({ name, info }) => (
 );
 
 
-
 function SimpleMap(props) {
-
+  console.log(props.center);
 
 
 
@@ -43,13 +51,17 @@ function SimpleMap(props) {
         defaultCenter={props.center}
         defaultZoom={props.zoom}
         yesIWantToUseGoogleMapApiInternals
-      // options={function (maps) { return { mapTypeId: "satellite" } }}
+        options={function (maps) { return { mapTypeControl: true, fullscreenControl: false } }}
+      // position=
       >
+
         <SchoolLocation
-          lat={props.coord.latitude}
-          lng={props.coord.longitude}
+          lat={props.coord.lat}
+          lng={props.coord.long}
           name={props.coord.name}
-          info={props.coord.contact}
+          address={props.coord.address}
+          phone={props.coord.phone}
+          mail={props.coord.mail}
         />
         <MyLocation
           lat={props.curLat}
@@ -57,7 +69,7 @@ function SimpleMap(props) {
           name="აქ ვარ"
         />
       </GoogleMapReact>
-    </div>
+    </div >
   );
 
 }

@@ -2,23 +2,21 @@ import { useState, useEffect } from 'react';
 
 import { Card, Table, Button, Form } from "react-bootstrap";
 import DataS from "./DataS";
-console.log(DataS);
 
 
 function TableJS({ setcoordinates, curLat, curLong }) {
 
-  const [filterSchool, setfilterSchool] = useState([])
+  const [filterSchool, setfilterSchool] = useState(DataS)
   const [kmNumber, setkmNumber] = useState(0)
+
 
   const filterNear = (e) => {
     e.preventDefault()
-    setfilterSchool(DataS.filter(s => Math.abs(curLat - s.latitude) <= Number(kmNumber) / 100).map(s => {
-
-      console.log(s);
-    }))
+    console.log(Math.abs(curLat - DataS[0].lat) <= kmNumber / 100)
+    setfilterSchool(DataS.filter(s => Math.abs(curLat - s.lat) <= (Number(kmNumber) / 100) && Math.abs(curLong - s.long) <= (Number(kmNumber) / 100)).map(s => s))
   }
 
-  console.log(filterSchool);
+
   return (
     <div>
       <div className="row">
@@ -29,7 +27,7 @@ function TableJS({ setcoordinates, curLat, curLong }) {
           </Form.Group>
           <Button variant="success" type="submit" className="col-5 mt-4">ახლოს</Button>
         </Form>
-        <Button variant="warning" className="col-4 mt-4" >ყველა</Button>
+        <Button variant="warning" className="col-4 mt-4" onClick={() => setfilterSchool(DataS)}>ყველა</Button>
       </div>
       <Table>
         <thead>
@@ -38,7 +36,7 @@ function TableJS({ setcoordinates, curLat, curLong }) {
           </tr>
         </thead>
         <tbody>
-          {DataS.map((d, i) => (
+          {filterSchool.map((d, i) => (
             <tr key={i}>
               <td>
 

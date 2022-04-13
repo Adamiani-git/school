@@ -33,6 +33,7 @@ a:link{
 }
 .school {
   /* position: absolute; */
+  max-height: 900px;
   overflow-y: scroll;
 }
 input[type=number]::-webkit-inner-spin-button,
